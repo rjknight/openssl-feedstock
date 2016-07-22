@@ -29,6 +29,7 @@ nmake -f ms\ntdll.mak test
 if errorlevel 1 exit 1
 
 REM Install step
+copy out32dll\openssl.exe %PREFIX%\openssl.exe
 copy out32\ssleay32.lib %LIBRARY_LIB%\ssleay32_static.lib
 copy out32\libeay32.lib %LIBRARY_LIB%\libeay32_static.lib
 copy out32dll\ssleay32.lib %LIBRARY_LIB%\ssleay32.lib
