@@ -43,6 +43,10 @@ test:
     - python   3.5.*   # [py35]
   imports:
     - ssl
+  commands:
+    - copy NUL checksum.txt        # [win]
+    - touch checksum.txt           # [unix]
+    - openssl sha256 checksum.txt
 
 about:
   home: http://www.openssl.org/
