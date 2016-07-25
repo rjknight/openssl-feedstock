@@ -10,7 +10,7 @@ source:
   sha256: 1d4007e53aad94a5b2002fe045ee7bb0b3d98f1a47f8b2bc851dcd1c74332919
 
 build:
-  number: 1
+  number: 2
   no_link: lib/libcrypto.so.1.0.0        # [linux]
   no_link: lib/libcrypto.1.0.0.dylib     # [osx]
   detect_binary_files_with_prefix: True  # [unix]
@@ -43,6 +43,10 @@ test:
     - python   3.5.*   # [py35]
   imports:
     - ssl
+  commands:
+    - copy NUL checksum.txt        # [win]
+    - touch checksum.txt           # [unix]
+    - openssl sha256 checksum.txt
 
 about:
   home: http://www.openssl.org/
