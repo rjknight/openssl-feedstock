@@ -11,6 +11,18 @@ Summary: OpenSSL is an open-source implementation of the SSL and TLS protocols
 
 
 
+Current build status
+====================
+
+Linux: [![Circle CI](https://circleci.com/gh/conda-forge/openssl-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/openssl-feedstock)
+OSX: [![TravisCI](https://travis-ci.org/conda-forge/openssl-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/openssl-feedstock)
+Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/openssl-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/openssl-feedstock/branch/master)
+
+Current release info
+====================
+Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/openssl/badges/version.svg)](https://anaconda.org/conda-forge/openssl)
+Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/openssl/badges/downloads.svg)](https://anaconda.org/conda-forge/openssl)
+
 Installing openssl
 ==================
 
@@ -31,7 +43,6 @@ It is possible to list all of the versions of `openssl` available on your platfo
 ```
 conda search openssl --channel conda-forge
 ```
-
 
 
 About conda-forge
@@ -67,18 +78,6 @@ Terminology
 
 **conda-forge** - the place where the feedstock and smithy live and work to
                   produce the finished article (built conda distributions)
-
-Current build status
-====================
-
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/openssl-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/openssl-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/openssl-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/openssl-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/openssl-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/openssl-feedstock/branch/master)
-
-Current release info
-====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/openssl/badges/version.svg)](https://anaconda.org/conda-forge/openssl)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/openssl/badges/downloads.svg)](https://anaconda.org/conda-forge/openssl)
 
 
 Updating openssl-feedstock
