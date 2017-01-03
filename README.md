@@ -3,7 +3,7 @@ About openssl
 
 Home: http://www.openssl.org/
 
-Package license: Apache-style (http://www.openssl.org/source/license.html)
+Package license: Apache-style
 
 Feedstock license: BSD 3-Clause
 
