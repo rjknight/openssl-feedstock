@@ -50,7 +50,7 @@ test:
 
 about:
   home: http://www.openssl.org/
-  license: Apache-style (http://www.openssl.org/source/license.html)
+  license: Apache-style
   license_family: Apache
   license_file: LICENSE
   summary: OpenSSL is an open-source implementation of the SSL and TLS protocols
