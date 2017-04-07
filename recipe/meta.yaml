@@ -25,6 +25,7 @@ build:
     - vc9     # [win and py27]
     - vc10    # [win and py34]
     - vc14    # [win and py35]
+    - vc14    # [win and py36]
 
 
 requirements:
@@ -33,7 +34,7 @@ requirements:
     - python             # [win]
     # required for win32: https://wiki.openssl.org/index.php/Compilation_and_Installation#Windows
     - nasm               # [win32]
-    - perl
+    - perl ==5.18.2
   run:
     - ca-certificates
 
@@ -53,7 +54,7 @@ test:
 about:
   home: http://www.openssl.org/
   license_file: LICENSE
-  license: Apache
+  license: OpenSSL
   license_family: Apache
   summary: OpenSSL is an open-source implementation of the SSL and TLS protocols
   dev_url: https://github.com/openssl/openssl
