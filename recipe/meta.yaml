@@ -1,12 +1,13 @@
+{% set name="openssl" %}
 {% set version="1.0.2h" %}
 
 package:
-  name: openssl
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: openssl-{{ version }}.tar.gz
-  url: http://www.openssl.org/source/openssl-{{ version }}.tar.gz
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: http://www.openssl.org/source/{{ name }}-{{ version }}.tar.gz
   sha256: 1d4007e53aad94a5b2002fe045ee7bb0b3d98f1a47f8b2bc851dcd1c74332919
 
 build:
@@ -41,6 +42,7 @@ test:
     - python   2.7.*   # [py27]
     - python   3.4.*   # [py34]
     - python   3.5.*   # [py35]
+    - python   3.6.*   # [py36]
   imports:
     - ssl
   commands:
@@ -50,10 +52,12 @@ test:
 
 about:
   home: http://www.openssl.org/
-  license: Apache-style
-  license_family: Apache
   license_file: LICENSE
+  license: Apache
+  license_family: Apache
   summary: OpenSSL is an open-source implementation of the SSL and TLS protocols
+  dev_url: https://github.com/openssl/openssl
+  doc_url: https://www.openssl.org/docs/man1.0.2/
 
 extra:
   recipe-maintainers:
