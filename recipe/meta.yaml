@@ -1,5 +1,5 @@
 {% set name="openssl" %}
-{% set version="1.0.2m" %}
+{% set version="1.0.2n" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: http://www.openssl.org/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 8c6ff15ec6b319b50788f42c7abc2890c08ba5a1cdcd3810eb9092deada37b0f
+  sha256: 370babb75f278c39e0c50e8c4e7493bc0f18db6867478341a832a982fd15a8fe
 
 build:
   skip: True  # [win and py36]
