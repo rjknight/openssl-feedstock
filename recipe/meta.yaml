@@ -1,4 +1,4 @@
-{% set version="1.0.2o" %}
+{% set version = "1.0.2o" %}
 
 package:
   name: openssl
