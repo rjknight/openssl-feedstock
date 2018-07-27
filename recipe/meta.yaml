@@ -1,18 +1,15 @@
-{% set name="openssl" %}
 {% set version="1.0.2o" %}
 
 package:
-  name: {{ name|lower }}
+  name: openssl
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: http://www.openssl.org/source/{{ name }}-{{ version }}.tar.gz
+  url: http://www.openssl.org/source/openssl-{{ version }}.tar.gz
   sha256: ec3f5c9714ba0fd45cb4e087301eb1336c317e0d20b575a125050470e8089e4d
 
 build:
-  skip: True  # [win and py36]
-  number: 0
+  number: 1
   no_link: lib/libcrypto.so.1.0.0        # [linux]
   no_link: lib/libcrypto.1.0.0.dylib     # [osx]
   detect_binary_files_with_prefix: True  # [unix]
@@ -22,27 +19,17 @@ build:
     - lib/pkgconfig/libcrypto.pc         # [unix]
     - lib/pkgconfig/libssl.pc            # [unix]
     - lib/pkgconfig/openssl.pc           # [unix]
-  features:
-    - vc9     # [win and py27]
-    - vc14    # [win and py35]
-    - vc14    # [win and py36]
-
 
 requirements:
   build:
-    # for feature activation
-    - python             # [win]
-    # required for win32: https://wiki.openssl.org/index.php/Compilation_and_Installation#Windows
-    - nasm               # [win32]
-    - perl ==5.20.3.1
+    - {{ compiler('c') }}
+    - yasm               # [win32]
+    - perl
+    - make               # [unix]
   run:
     - ca-certificates
 
 test:
-  requires:
-    - python   2.7.*   # [py27]
-    - python   3.5.*   # [py35]
-    - python   3.6.*   # [py36]
   imports:
     - ssl
   commands:
