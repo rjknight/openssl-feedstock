@@ -14,7 +14,6 @@ build:
   number: 0
   no_link: lib/libcrypto.so.1.0.0        # [linux]
   no_link: lib/libcrypto.1.0.0.dylib     # [osx]
-  detect_binary_files_with_prefix: True  # [unix]
   has_prefix_files:                      # [unix]
     - bin/c_rehash                       # [unix]
     - include/openssl/opensslconf.h      # [unix]
