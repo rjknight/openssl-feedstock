@@ -33,8 +33,6 @@ requirements:
     - ca-certificates
 
 test:
-  imports:
-    - ssl
   commands:
     - copy NUL checksum.txt        # [win]
     - touch checksum.txt           # [unix]
