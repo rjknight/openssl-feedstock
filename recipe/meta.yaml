@@ -21,6 +21,8 @@ build:
     - lib/pkgconfig/libcrypto.pc         # [unix]
     - lib/pkgconfig/libssl.pc            # [unix]
     - lib/pkgconfig/openssl.pc           # [unix]
+  run_exports:
+    - {{ pin_subpackage('openssl', max_pin='x.x.x') }}
 
 requirements:
   build:
