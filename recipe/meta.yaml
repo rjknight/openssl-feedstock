@@ -1,5 +1,5 @@
-{% set name="openssl" %}
-{% set version="1.0.2p" %}
+{% set name = "openssl" %}
+{% set version = "1.0.2p" %}
 
 package:
   name: {{ name|lower }}
