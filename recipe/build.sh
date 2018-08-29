@@ -1,7 +1,6 @@
 #!/bin/bash
 
-export PERL='/usr/bin/env perl'
-
+PERL=${BUILD_PREFIX}/bin/perl
 declare -a _CONFIG_OPTS
 _CONFIG_OPTS+=(--prefix=${PREFIX})
 _CONFIG_OPTS+=(--libdir=lib)
