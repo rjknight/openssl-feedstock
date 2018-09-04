@@ -29,6 +29,8 @@ requirements:
     - yasm               # [win32]
     - perl
     - make               # [unix]
+  # Empty host section to ensure that this is identified as cb3
+  host:
   run:
     - ca-certificates
 
