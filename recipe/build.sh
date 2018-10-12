@@ -76,3 +76,7 @@ if [[ ${HOST} =~ .*linux.* ]]; then
     exit 1
   fi
 fi
+
+# Remove useless man files
+rm -r ${PREFIX}/ssl/man
+
