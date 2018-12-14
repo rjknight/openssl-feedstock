@@ -28,6 +28,7 @@ requirements:
     - {{ compiler('c') }}
     - nasm
     - perl
+    - make
   # Empty host section to ensure that this is identified as cb3
   host:
   run:
