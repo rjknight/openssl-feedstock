@@ -1,12 +1,6 @@
-copy %BUILD_PREFIX%\Library\bin\yasm.exe %BUILD_PREFIX%\Library\bin\nasm.exe
+set OSSL_CONFIGURE=VC-WIN64A
+set OSSL_DO_SCRIPT=ms\do_win64a.bat
 
-if "%ARCH%"=="32" (
-    set OSSL_CONFIGURE=VC-WIN32
-    set OSSL_DO_SCRIPT=ms\do_nasm.bat
-) ELSE (
-    set OSSL_CONFIGURE=VC-WIN64A
-    set OSSL_DO_SCRIPT=ms\do_win64a.bat
-)
 
 REM Configure step
 perl configure %OSSL_CONFIGURE%
@@ -15,10 +9,10 @@ call %OSSL_DO_SCRIPT%
 if errorlevel 1 exit 1
 
 REM Build step
-if "%ARCH%"=="64" (
-    ml64 -c -Foms\uptable.obj ms\uptable.asm
-    if errorlevel 1 exit 1
-)
+
+ml64 -c -Foms\uptable.obj ms\uptable.asm
+if errorlevel 1 exit 1
+
 
 nmake -f ms\nt.mak
 if errorlevel 1 exit 1
