@@ -26,7 +26,6 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - nasm
     - perl
     - make  # [unix]
   # Empty host section to ensure that this is identified as cb3
