@@ -56,7 +56,7 @@ CC=${CC}" ${CPPFLAGS} ${CFLAGS}" \
 # PATH=${SRC_DIR}:${PATH} make -j1 depend
 
 # make -j${CPU_COUNT} ${VERBOSE_AT}
-make ${VERBOSE_AT}
+make -j${CPU_COUNT}
 
 # expected error: https://github.com/openssl/openssl/issues/6953
 #    OK to ignore: https://github.com/openssl/openssl/issues/6953#issuecomment-415428340
@@ -67,7 +67,7 @@ rm test/recipes/04-test_err.t
 # .. it exits with a failure code.
 if [[ "${HOST}" == "${BUILD}" ]]; then
   make test > testsuite.log 2>&1 || true
-  if ! cat testsuite.log | grep "ALL TESTS SUCCESSFUL."; then
+  if ! cat testsuite.log | grep -i "all tests successful"; then
     echo "Testsuite failed!  See $(pwd)/testsuite.log for more info."
     exit 1
   fi
