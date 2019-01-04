@@ -11,12 +11,11 @@ source:
   sha256: fc20130f8b7cbd2fb918b2f14e2f429e109c31ddd0fb38fc5d71d9ffed3f9f41
 
 build:
-  number: 1000
-  no_link: lib/libcrypto.so.1.1          # [linux]
+  number: 0
+  no_link: lib/libcrypto.so.1.1        # [linux]
   no_link: lib/libcrypto.1.1.dylib     # [osx]
   has_prefix_files:                      # [unix]
     - bin/c_rehash                       # [unix]
-    - include/openssl/opensslconf.h      # [unix]
     - lib/pkgconfig/libcrypto.pc         # [unix]
     - lib/pkgconfig/libssl.pc            # [unix]
     - lib/pkgconfig/openssl.pc           # [unix]
@@ -28,10 +27,13 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - perl
-    - make  # [unix]
+    - nasm               # [win]
+    - make               # [unix]
   # Empty host section to ensure that this is identified as cb3
   host:
+    # technically a build tool, but the windows makefile really wants to find it in the host env.
+    #    easier to do this than carry a patch.
+    - perl
   run:
     - ca-certificates
 
