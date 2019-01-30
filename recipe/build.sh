@@ -23,6 +23,10 @@ if [[ ${_BASE_CC} == *-* ]]; then
       _CONFIG_OPTS+=(linux-x86_64)
       CFLAGS="${CFLAGS} -Wa,--noexecstack"
       ;;
+    aarch64-*-linux*)
+      _CONFIG_OPTS+=(linux-aarch64)
+      CFLAGS="${CFLAGS} -Wa,--noexecstack"
+      ;;
     *powerpc64le-*linux*)
       _CONFIG_OPTS+=(linux-ppc64le)
       CFLAGS="${CFLAGS} -Wa,--noexecstack"
