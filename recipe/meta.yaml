@@ -28,7 +28,6 @@ requirements:
 outputs:
   - name: openssl
     build:
-      number: 0
       no_link: lib/libcrypto.so.1.1        # [linux]
       no_link: lib/libcrypto.1.1.dylib     # [osx]
       has_prefix_files:                      # [unix]
@@ -43,47 +42,28 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - make
+        - perl               # [not win]
+      # Empty host section to ensure that this is identified as cb3
+      host:
+        # technically a build tool, but the windows makefile really wants to find it in the host env.
+        #    easier to do this than carry a patch.
+        - perl  # [win]
       run:
         - ca-certificates
-    files:
-      - bin/c_rehash                # [unix]
-      - Library/bin/c_rebash.pl     # [win]
-      - bin/openssl                 # [unix]
-      - Library/bin/openssl.*       # [win]
-      - lib/libcrypto.so*           # [linux]
-      - lib/libssl.so*              # [linux]
-      - lib/libcrypto*.dylib        # [osx]
-      - lib/libssl*.dylib           # [osx]
-      - Library/bin/libcrypto*      # [win]
-      - Library/bin/libssl*         # [win]
-      - lib/engines*/*              # [unix]
-      - Library/lib/engines*        # [win]
-      - include/openssl/*           # [unix]
-      - Library/include/openssl/*   # [win]
-      - lib/pkgconfig/libcrypto.pc  # [unix]
-      - lib/pkgconfig/libssl.pc     # [unix]
-      - lib/pkgconfig/openssl.pc    # [unix]
-      - ssl/*                       # [unix]
-      - Library/ct_log_list.*       # [win]
-      - Library/openssl.*           # [win]
-      - Library/misc/*              # [win]
+    script: install_openssl.sh    # [unix]
+    script: install_openssl.bat   # [win]
     test:
       commands:
         - copy NUL checksum.txt        # [win]
         - touch checksum.txt           # [unix]
         - openssl sha256 checksum.txt
 
-  - name: libopenssl-static
-    build:
-      number: 0
-    requirements:
-      build:
-        - {{ compiler('c') }}
-    files:
-      - lib/libcrypto.a             # [unix]
-      - lib/libssl.a                # [unix]
-      - Library/lib/libcrypto.lib   # [win]
-      - Library/lib/libssl.lib      # [win]
+  - name: libopenssl-static               # [unix]
+    requirements:                         # [unix]
+      build:                              # [unix]
+        - {{ compiler('c') }}             # [unix]
+    script: install_libopenssl-static.sh  # [unix]
 
 about:
   home: http://www.openssl.org/
