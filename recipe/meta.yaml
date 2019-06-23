@@ -10,6 +10,9 @@ source:
   patches:
     - 0001-Don-t-use-USE_BCRYPTGENRANDOM-for-VS-older-than-2015.patch
 
+build:
+  number: 0
+
 requirements:
     build:
       - {{ compiler('c') }}
@@ -21,10 +24,6 @@ requirements:
       # technically a build tool, but the windows makefile really wants to find it in the host env.
       #    easier to do this than carry a patch.
       - perl  # [win]
-
-build:
-  number: 0
-
 
 outputs:
   - name: openssl
