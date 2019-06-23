@@ -22,6 +22,9 @@ requirements:
       #    easier to do this than carry a patch.
       - perl  # [win]
 
+build:
+  number: 0
+
 
 outputs:
   - name: openssl
