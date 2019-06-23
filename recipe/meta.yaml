@@ -1,7 +1,7 @@
 {% set version = "1.1.1c" %}
 
 package:
-  name: openssl
+  name: openssl_split
   version: {{ version }}
 
 source:
@@ -10,39 +10,78 @@ source:
   patches:
     - 0001-Don-t-use-USE_BCRYPTGENRANDOM-for-VS-older-than-2015.patch
 
-build:
-  number: 0
-  no_link: lib/libcrypto.so.1.1        # [linux]
-  no_link: lib/libcrypto.1.1.dylib     # [osx]
-  has_prefix_files:                      # [unix]
-    - bin/c_rehash                       # [unix]
-    - lib/pkgconfig/libcrypto.pc         # [unix]
-    - lib/pkgconfig/libssl.pc            # [unix]
-    - lib/pkgconfig/openssl.pc           # [unix]
-  run_exports:
-    # openssl's versioning is X.Y.Z(rev), where rev is really the patch release ID
-    #    This pin allows the patch release to be >= the build-time openssl version.
-    - {{ pin_subpackage('openssl', max_pin='x.x.x') }}
-
 requirements:
-  build:
-    - {{ compiler('c') }}
-    - nasm               # [win]
-    - make               # [unix]
-    - perl               # [not win]
-  # Empty host section to ensure that this is identified as cb3
-  host:
-    # technically a build tool, but the windows makefile really wants to find it in the host env.
-    #    easier to do this than carry a patch.
-    - perl  # [win]
-  run:
-    - ca-certificates
+    build:
+      - {{ compiler('c') }}
+      - nasm               # [win]
+      - make               # [unix]
+      - perl               # [not win]
+    # Empty host section to ensure that this is identified as cb3
+    host:
+      # technically a build tool, but the windows makefile really wants to find it in the host env.
+      #    easier to do this than carry a patch.
+      - perl  # [win]
 
-test:
-  commands:
-    - copy NUL checksum.txt        # [win]
-    - touch checksum.txt           # [unix]
-    - openssl sha256 checksum.txt
+
+outputs:
+  - name: openssl
+    build:
+      number: 0
+      no_link: lib/libcrypto.so.1.1        # [linux]
+      no_link: lib/libcrypto.1.1.dylib     # [osx]
+      has_prefix_files:                      # [unix]
+        - bin/c_rehash                       # [unix]
+        - lib/pkgconfig/libcrypto.pc         # [unix]
+        - lib/pkgconfig/libssl.pc            # [unix]
+        - lib/pkgconfig/openssl.pc           # [unix]
+      run_exports:
+        # openssl's versioning is X.Y.Z(rev), where rev is really the patch release ID
+        #    This pin allows the patch release to be >= the build-time openssl version.
+        - {{ pin_subpackage('openssl', max_pin='x.x.x') }}
+    requirements:
+      build:
+        - {{ compiler('c') }}
+      run:
+        - ca-certificates
+    files:
+      - bin/c_rehash                # [unix]
+      - Library/bin/c_rebash.pl     # [win]
+      - bin/openssl                 # [unix]
+      - Library/bin/openssl.*       # [win]
+      - lib/libcrypto.so*           # [linux]
+      - lib/libssl.so*              # [linux]
+      - lib/libcrypto*.dylib        # [osx]
+      - lib/libssl*.dylib           # [osx]
+      - Library/bin/libcrypto*      # [win]
+      - Library/bin/libssl*         # [win]
+      - lib/engines*/*              # [unix]
+      - Library/lib/engines*        # [win]
+      - include/openssl/*           # [unix]
+      - Library/include/openssl/*   # [win]
+      - lib/pkgconfig/libcrypto.pc  # [unix]
+      - lib/pkgconfig/libssl.pc     # [unix]
+      - lib/pkgconfig/openssl.pc    # [unix]
+      - ssl/*                       # [unix]
+      - Library/ct_log_list.*       # [win]
+      - Library/openssl.*           # [win]
+      - Library/misc/*              # [win]
+    test:
+      commands:
+        - copy NUL checksum.txt        # [win]
+        - touch checksum.txt           # [unix]
+        - openssl sha256 checksum.txt
+
+  - name: libopenssl-static
+    build:
+      number: 0
+    requirements:
+      build:
+        - {{ compiler('c') }}
+    files:
+      - lib/libcrypto.a             # [unix]
+      - lib/libssl.a                # [unix]
+      - Library/lib/libcrypto.lib   # [win]
+      - Library/lib/libssl.lib      # [win]
 
 about:
   home: http://www.openssl.org/
