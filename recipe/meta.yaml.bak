@@ -1,4 +1,4 @@
-{% set version = "1.1.1jk" %}
+{% set version = "1.1.1c" %}
 
 package:
   name: openssl_split
@@ -7,8 +7,7 @@ package:
 source:
 #  url: http://github.com/openssl/openssl/archive/8be96f236969caabf303bec389a2f812b4869c1c.tar.gz
 #url: http://github.com/openssl/openssl/archive/378d53ec4d2027b6f797198eebca5e50d42959d4.tar.gz
-#url: http://github.com/openssl/openssl/archive/3ff98f558157ada23a3527d82793a524eb8263ec.tar.gz # broken
-  url: http://github.com/openssl/openssl/archive/4dcb150ea30f9bbfa7946e6b39c30a86aca5ed02.tar.gz
+  url: http://github.com/openssl/openssl/archive/3ff98f558157ada23a3527d82793a524eb8263ec.tar.gz
 
 #  sha256: f6fb3079ad15076154eda9413fed42877d668e7069d9b87396d0804fdb3f4c90
   patches:
